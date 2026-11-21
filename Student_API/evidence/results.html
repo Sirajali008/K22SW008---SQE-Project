@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8"><title>Student Management API test results</title><style>*{box-sizing:border-box}body{max-width:1050px;margin:28px auto;padding:0 18px;color:#162536;font:17px Arial,sans-serif}h1{font-size:32px}article{border:1px solid #bbc3cc;border-radius:6px;margin:12px 0;padding:18px}h2{font-size:20px;margin:0 0 8px}p{margin:6px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px monospace;background:#f1f3f5;padding:8px;margin:4px 0}b{font-size:14px}</style><h1>Student Management API test results</h1><p>Newman collection run · 17 requests · 50 assertions passed</p>
+<article id="tc1"><h2>TC-01 Create student</h2><p>POST http://localhost:3000/api/students</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 1 }</pre>
+<b>Response · 201 Created</b><pre>{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:1}</pre><p>3 assertions passed</p></article>
+<article id="tc2"><h2>TC-02 List students</h2><p>GET http://localhost:3000/api/students</p>
+<b>Response · 200 OK</b><pre>[{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:1}]</pre><p>3 assertions passed</p></article>
+<article id="tc3"><h2>TC-03 Read student</h2><p>GET http://localhost:3000/api/students/1</p>
+<b>Response · 200 OK</b><pre>{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:1}</pre><p>3 assertions passed</p></article>
+<article id="tc4"><h2>TC-04 Update semester</h2><p>PUT http://localhost:3000/api/students/1</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 2 }</pre>
+<b>Response · 200 OK</b><pre>{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:2}</pre><p>3 assertions passed</p></article>
+<article id="tc5"><h2>TC-05 Read updated student</h2><p>GET http://localhost:3000/api/students/1</p>
+<b>Response · 200 OK</b><pre>{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:2}</pre><p>3 assertions passed</p></article>
+<article id="tc6"><h2>TC-06 Missing department</h2><p>POST http://localhost:3000/api/students</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;semester&quot;: 1 }</pre>
+<b>Response · 400 Bad Request</b><pre>{&quot;error&quot;:&quot;department must contain 1 to 100 characters.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc7"><h2>TC-07 Invalid semester</h2><p>PUT http://localhost:3000/api/students/1</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 9 }</pre>
+<b>Response · 400 Bad Request</b><pre>{&quot;error&quot;:&quot;semester must be an integer from 1 to 8.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc8"><h2>TC-08 Duplicate roll number</h2><p>POST http://localhost:3000/api/students</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 1 }</pre>
+<b>Response · 409 Conflict</b><pre>{&quot;error&quot;:&quot;Roll number already exists.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc9"><h2>TC-09 Malformed ID</h2><p>GET http://localhost:3000/api/students/abc</p>
+<b>Response · 400 Bad Request</b><pre>{&quot;error&quot;:&quot;ID must be a positive integer.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc10"><h2>TC-10 Malformed JSON</h2><p>POST http://localhost:3000/api/students</p>
+<b>Request body</b><pre>{&quot;name&quot;:</pre>
+<b>Response · 400 Bad Request</b><pre>{&quot;error&quot;:&quot;Malformed JSON.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc11"><h2>TC-11 Incorrect media type</h2><p>POST http://localhost:3000/api/students</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 1 }</pre>
+<b>Response · 415 Unsupported Media Type</b><pre>{&quot;error&quot;:&quot;Use Content-Type application/json.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc12"><h2>TC-12 Verify rejected writes</h2><p>GET http://localhost:3000/api/students</p>
+<b>Response · 200 OK</b><pre>[{&quot;id&quot;:1,&quot;name&quot;:&quot;Ali Ahmed&quot;,&quot;rollNo&quot;:&quot;PBL-ce68b0b7-9693-482e&quot;,&quot;department&quot;:&quot;Software Engineering&quot;,&quot;semester&quot;:2}]</pre><p>3 assertions passed</p></article>
+<article id="tc13"><h2>TC-13 Delete student</h2><p>DELETE http://localhost:3000/api/students/1</p>
+<b>Response · 204 No Content</b><pre>(empty body)</pre><p>2 assertions passed</p></article>
+<article id="tc14"><h2>TC-14 Read deleted student</h2><p>GET http://localhost:3000/api/students/1</p>
+<b>Response · 404 Not Found</b><pre>{&quot;error&quot;:&quot;Student not found.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc15"><h2>TC-15 Update missing student</h2><p>PUT http://localhost:3000/api/students/1</p>
+<b>Request body</b><pre>{   &quot;name&quot;: &quot;Ali Ahmed&quot;,   &quot;rollNo&quot;: &quot;PBL-ce68b0b7-9693-482e&quot;,   &quot;department&quot;: &quot;Software Engineering&quot;,   &quot;semester&quot;: 1 }</pre>
+<b>Response · 404 Not Found</b><pre>{&quot;error&quot;:&quot;Student not found.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc16"><h2>TC-16 Delete missing student</h2><p>DELETE http://localhost:3000/api/students/1</p>
+<b>Response · 404 Not Found</b><pre>{&quot;error&quot;:&quot;Student not found.&quot;}</pre><p>3 assertions passed</p></article>
+<article id="tc17"><h2>TC-17 Verify final list</h2><p>GET http://localhost:3000/api/students</p>
+<b>Response · 200 OK</b><pre>[]</pre><p>3 assertions passed</p></article>

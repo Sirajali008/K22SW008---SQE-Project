@@ -1,0 +1,124 @@
+newman
+
+Student Management CRUD
+
+→ TC-01 Create student
+  POST http://localhost:3000/api/students [201 Created, 320B, 33ms]
+  ✓  HTTP 201
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-02 List students
+  GET http://localhost:3000/api/students [200 OK, 290B, 4ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-03 Read student
+  GET http://localhost:3000/api/students/1 [200 OK, 288B, 2ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-04 Update semester
+  PUT http://localhost:3000/api/students/1 [200 OK, 288B, 5ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-05 Read updated student
+  GET http://localhost:3000/api/students/1 [200 OK, 288B, 3ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-06 Missing department
+  POST http://localhost:3000/api/students [400 Bad Request, 243B, 4ms]
+  ✓  HTTP 400
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-07 Invalid semester
+  PUT http://localhost:3000/api/students/1 [400 Bad Request, 239B, 5ms]
+  ✓  HTTP 400
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-08 Duplicate roll number
+  POST http://localhost:3000/api/students [409 Conflict, 223B, 2ms]
+  ✓  HTTP 409
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-09 Malformed ID
+  GET http://localhost:3000/api/students/abc [400 Bad Request, 229B, 2ms]
+  ✓  HTTP 400
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-10 Malformed JSON
+  POST http://localhost:3000/api/students [400 Bad Request, 214B, 3ms]
+  ✓  HTTP 400
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-11 Incorrect media type
+  POST http://localhost:3000/api/students [415 Unsupported Media Type, 244B, 2ms]
+  ✓  HTTP 415
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-12 Verify rejected writes
+  GET http://localhost:3000/api/students [200 OK, 290B, 4ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-13 Delete student
+  DELETE http://localhost:3000/api/students/1 [204 No Content, 111B, 4ms]
+  ✓  HTTP 204
+  ✓  Response matches the expected data
+
+→ TC-14 Read deleted student
+  GET http://localhost:3000/api/students/1 [404 Not Found, 215B, 4ms]
+  ✓  HTTP 404
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-15 Update missing student
+  PUT http://localhost:3000/api/students/1 [404 Not Found, 215B, 2ms]
+  ✓  HTTP 404
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-16 Delete missing student
+  DELETE http://localhost:3000/api/students/1 [404 Not Found, 215B, 1ms]
+  ✓  HTTP 404
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+→ TC-17 Verify final list
+  GET http://localhost:3000/api/students [200 OK, 180B, 1ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Response matches the expected data
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              17 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              17 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              50 │               0 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 330ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 1.02kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 4ms [min: 1ms, max: 33ms, s.d.: 7ms] │
+└─────────────────────────────────────────────────────────────┘

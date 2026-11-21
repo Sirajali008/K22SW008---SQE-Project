@@ -1,0 +1,8 @@
+{
+  "name": "student-management-pbl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local Student Management REST API backed by SQLite",
+  "engines": { "node": ">=24" },
+  "scripts": { "start": "node src/server.js", "db:list": "node src/list.js" }
+}
